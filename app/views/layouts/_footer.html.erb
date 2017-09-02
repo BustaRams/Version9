@@ -1,0 +1,37 @@
+<footer>
+    <div class="container">
+      <div class="foot-logo">
+        <%= link_to root_path  ,class:"navbar-brand" do %>
+        <%= image_tag("foot-logo.png" , alt:"")  %>
+        <% end %>
+      </div>
+      <div class="copy">
+        <h3 align="right"><%= link_to "Contact Us", contact_us_path %></h3>
+        <p>Copyrights © Voyajers, All Rights Reserved.</p><br>
+
+      </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+  $("#btn-concours").click(function() {
+   $('html,body').animate({
+     scrollTop: $("#suite").offset().top - 35
+    },
+    'slow');
+  });
+
+  $("#btn-concours-suite").click(function() {
+   $('html,body').animate({
+     scrollTop: $("#text-model").offset().top + 15
+    },
+    'slow');
+  });
+
+  $("#btn-concours-form").click(function() {
+   $('html,body').animate({
+     scrollTop: $("#form").offset().top + 5
+    },
+    'slow');
+  });
+</script>

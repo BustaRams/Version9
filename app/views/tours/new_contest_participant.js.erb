@@ -1,0 +1,5 @@
+<% if @new_participant.valid? %>
+  $('#successfull-delivery').modal('show')
+<% else %>
+  $('#new_contest_participant').html('<%= escape_javascript render 'contest_participant_form', new_participant: @new_participant %>');
+<% end %>

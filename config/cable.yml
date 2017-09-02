@@ -1,0 +1,9 @@
+development:
+  adapter: async
+
+test:
+  adapter: async
+
+production:
+  adapter: redis
+  url: redis://rediscloud:CwLPQ6DN3LqZKANg@redis-15282.c3.eu-west-1-2.ec2.cloud.redislabs.com:15282/

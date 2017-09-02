@@ -1,0 +1,150 @@
+<div class="white-bg pad-block trip-detail">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-6 col-md-6">
+              <div class="trip-image">
+                <%= image_tag @tour.tour_img.url(:grande_img), class: "fix-img",alt:"" , style:"width: 100%;" %>
+            </div>
+            </div>
+
+          <div class="col-sm-6 col-md-6">
+              <div class="trip-data">
+                  <div class="trip-info">
+                  <ins class="bookingaff" data-aid="1288960" data-target_aid="1288592" data-prod="sbp" data-width="500" data-height="130" data-df_num_properties="3">
+    <!-- Anything inside will go away once widget is loaded. -->
+    <a href="//www.booking.com?aid=1288592">Booking.com</a>
+</ins>
+<script type="text/javascript">
+    (function(d, sc, u) {
+      var s = d.createElement(sc), p = d.getElementsByTagName(sc)[0];
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = u + '?v=' + (+new Date());
+      p.parentNode.insertBefore(s,p);
+      })(document, 'script', '//aff.bstatic.com/static/affiliate_base/js/flexiproduct.js');
+</script>
+                      <h3 class="trip-name"><%= @tour.name %></h3>
+                      <div class="tag-wrap"><%= @tour.start_time.strftime('%B %Y') %></div>
+                      <div class="trip-desc">
+                          <p class="desc"><%= @tour.description %></p>
+                          <ul>
+                              <li><p><strong>Owner:</strong><%= @tour.owner.First_name %> <%= @tour.owner.Last_name.each_char.first %></p></li>
+                              <li><p><strong>Start Time:</strong><%= @tour.start_time.strftime('%B %Y') %></p></li>
+                              <!-- <li><p><strong>Languages:</strong> <%#= @tour.main_language.try(:name) %></p></li> -->
+                              <li><p><strong>Spoken Languages:</strong>
+                                <%# @tour.tour_languages.each do |lang| %>
+                                  <%#= Language.find(lang.language_id).name %>
+                              <%# end %>
+                                <%= @tour.tour_languages.map{|p| Language.find(p.language_id).name}.join(",")%>
+                            </p></li>
+                          </ul>
+                          <div>
+
+                        </div>
+                      </div>
+
+                      <div class="trip-locat">
+                        <p><%= image_tag("pin.png" ,  alt:"") %><%=@tour.category.name %></p>
+                        <% if @tour.owner != current_user %>
+                            <%= render 'tours/subs_buttons' %>
+                        <% else %>
+                            <% if @tour.locked? %>
+                            <% if @tour.tours_users.count == 0 %>
+                              <%= link_to 'Leave', tours_trip_leave_path(id: @tour.id), method: :delete, class: 'line-btn', role: 'button' %>
+                            <%else%>
+                                <%= link_to 'Leave', tours_unsubscribe_path(id: @tour.id), method: :post, class: 'line-btn', role: 'button' %>
+                            <%end%>
+                                <%= link_to 'Unlock the Road Trip', tours_unlock_path(@tour), method: :post, class: 'line-btn', role: 'button' %>
+                            <% else %>
+                            <% if @tour.tours_users.count == 0 %>
+                              <%= link_to 'Leave', tours_trip_leave_path(id: @tour.id), method: :delete, class: 'line-btn', role: 'button' %>
+                            <%else%>
+                                <%= link_to 'Leave', tours_unsubscribe_path(id: @tour.id), method: :post, class: 'line-btn', role: 'button' %>
+                            <%end%>
+                                <%= link_to 'Lock the Road Trip', tours_lock_path(@tour), method: :post, class: 'line-btn', role: 'button' %>
+                            <% end %>
+                        <% end %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <hr class="sep" />
+      <div class="row">
+          <div class="col-md-7">
+              <div class="tbl-head">
+                  <h3 class="com-title">Road Trip <span>Members</span></h3>
+
+              </div>
+              <%= render 'tours/members' %>
+              <% if @allowed_user %>
+                  <div class="tbl-head">
+                      <h3 class="com-title">Idea <span>Board</span></h3>
+                  </div>
+                  <%= render 'tours/ideas_board' %>
+                  <% if @tour.owner == current_user || current_user.is_superuser == true %>
+                      <%= render 'tours/owner_ideas_board' %>
+                  <% end %>
+                <% end %>
+              </div>
+              <% if @allowed_user || current_user.is_superuser == true %>
+                <div class="col-md-5">
+                    <%= render 'tours/chat' %>
+                </div>
+              <% end %>
+      </div>
+  </div>
+</div>
+
+
+<script>
+$(window).scroll(function() {
+	if ($(this).scrollTop() > 1){
+		$('header').addClass("sticky");
+		$('body').addClass("sticky-b");
+	}
+	else{
+		$('header').removeClass("sticky");
+		$('body').removeClass("sticky-b");
+	}
+});
+
+$( window ).load(function(){
+    $(".fix-img").each(function(){
+
+        var img = $(this);
+        var image_heightA = img.height();
+        var image_widthA = img.width();
+        var parent_image_widthA = img.parent().width();
+        var parent_image_heightA = img.parent().height();
+        //if(width <= height)
+
+        if(image_heightA > parent_image_heightA && image_widthA > parent_image_widthA){
+
+            img.css('width',parent_image_widthA + 'px');
+            var tem_image_heightA = img.height();
+
+            if(tem_image_heightA > parent_image_heightA){
+                img.css('width','100%');
+            }
+            else{
+                img.css('width','auto');
+                img.css('height','100%');
+            }
+        }
+        else{
+            img.css('width',parent_image_widthA + 'px');
+            var tem_image_heightA = img.height();
+
+            if(tem_image_heightA > parent_image_heightA){
+                img.css('width','100%');
+            }
+            else{
+                img.css('width','auto');
+                img.css('height','100%');
+            }
+        }
+    });
+});
+
+</script>

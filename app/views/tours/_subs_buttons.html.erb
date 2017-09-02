@@ -1,0 +1,76 @@
+<% if current_user.tours_users.active.where(tour: @tour).first.present? %>
+    <% if current_user.tours_users.where(tour: @tour, kicked: true).first.present? %>
+
+    <% else %>
+    <%= link_to 'Leave', tours_unsubscribe_path(id: @tour.id), method: :post, class: 'line-btn', role: 'button' %>
+    <% end%>
+<%else%>
+<!-- Hide button form superuser -->
+<% if current_user.is_superuser == true%>
+<% else%>
+    <%= link_to 'Join', "#", class: 'line-btn', role: 'button', id: 'join' %>
+    <div id="dialog" style="display: none">
+  </div>
+<% end %>
+<% end%>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <% if @tour.locked? == false %>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Voyajers</h4>
+      </div>
+      <div class="modal-body">
+        <p>Welcome to this road trip ! Follow these quick guidelines for the best experience on Voyajers ! </p>
+        <p><br>- Talk about it around you !</br> You mignt know someone who knows someone who knows someone... Who craves to go on the same journey ! It'd be sweet to have them join you right and have a common friend with your travel partners.</p>
+        <p>- Always meet the people you will travel with beforehand, have a drink with them, get to know them, to be sure that you'll get along all right :)</p>
+        <p>- Don't communicate anything personal on this page</p>
+        <p>Have Fun :D</p>
+      </div>
+      <%else%>
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>This Trip is locked by its creator because it's full, create another one for the same destination</p>
+        </div>
+
+      <%end%>
+      
+    <% if @tour.locked? == false %>
+      <div class="modal-footer">
+        <%= link_to "OK", tours_subscribe_path(id: @tour.id), method: :post ,class: 'line-btn'%>
+      </div>
+      <%else%>
+       <div class="modal-footer">
+      <%= link_to "OK", new_tour_path ,class: 'line-btn'%>
+      </div>
+      <%end%>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+<!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"rel="stylesheet" type="text/css" /> -->
+<script type="text/javascript">
+// for modal popup on join
+    $(function () {
+        $("#join").click(function (e) {
+          e.preventDefault();
+            $("#myModal").modal('show');
+        });
+
+        $('#myModal').on('hidden', function () {
+          document.location.reload();
+        })
+
+    });
+</script>

@@ -1,0 +1,99 @@
+<div class="white-bg pad-block log-wrap">
+  <div class="container">
+    <%= simple_form_for(new_participant, url: new_contest_participant_path, remote: true) do |f| %>
+      <div class="frm-wrap">
+        <%= f.error_notification %>
+          <div class="gray-box">
+            <div class="frm-line">
+              <div class="frm-half">
+                <div class="form-group">
+                  <label> First Name*</label>
+                  <%= f.text_field :first_name, class: "form-control", placeholder: "John" %>
+                  <p class="error"><%= new_participant.errors.full_messages_for(:first_name)[0] if new_participant.errors[:first_name].present? %></p>
+                </div>
+              </div>
+              <div class="frm-half">
+                <div class="form-group">
+                  <label> Last Name*</label>
+                  <%= f.text_field :last_name, class: "form-control", placeholder: "Smith" %>
+                  <p class="error"><%= new_participant.errors.full_messages_for(:last_name)[0] if new_participant.errors[:last_name].present? %></p>
+                </div>
+              </div>
+            </div>
+            <div class="frm-line">
+              <div class="frm-full">
+                <div class="form-group">
+                  <label> Email*</label>
+                  <%= f.email_field :email, class: "form-control", placeholder: "user@example.com" %>
+                  <p class="error"><%= new_participant.errors.full_messages_for(:email)[0] if new_participant.errors[:email].present? %></p>
+                </div>
+              </div>
+            </div>
+            <div class="frm-line">
+              <div class="frm-half">
+                <div class="form-group">
+                  <label> Date of birth*</label>
+                  <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 90,
+                                  end_year: Date.today.year - 12,
+                                  order: [:day, :month, :year], label: false %>
+
+                </div>
+              </div>
+              <div class="frm-half">
+                <div class="form-group">
+                  <label> What languages do you speak?* </label>
+                  <%= f.text_field :languages, class: 'form-control', placeholder: "French, Japanese, Spanish..." %>
+                  <p class="error"><%= new_participant.errors.full_messages_for(:languages)[0] if new_participant.errors[:languages].present? %></p>
+                </div>
+              </div>
+            </div>
+            <div class="frm-line">
+              <div class="frm-full">
+                <div class="form-group">
+                  <label>Top 5 Dream Destinations* </label>
+                  <%= f.text_field :dream_destinations, autocomplete: "off", class: "form-control", placeholder: "Cities, countries, regions..." %>
+                  <p class="error"><%= new_participant.errors.full_messages_for(:dream_destinations)[0] if new_participant.errors[:dream_destinations].present? %></p>
+
+                </div>
+              </div>
+            </div>
+            <div class="frm-line">
+              <div class="frm-full">
+                <div class="form-group">
+                  <label>Where are you from ?* </label>
+                  <%= f.text_field :position, autocomplete: "off", class: "form-control", placeholder: "USA, China..." %>
+                  <p class="error"><%= new_participant.errors.full_messages_for(:position)[0] if new_participant.errors[:position].present? %></p>
+
+                </div>
+              </div>
+            </div>
+            <div class="frm-line">
+              <div class="frm-full">
+                <div class="form-group">
+                  <label>Why should we chose you?* </label>
+                  <%= f.text_area :why_to_choose, autocomplete: "off", class: "form-control bigger-textarea", placeholder: "Tell us everything we should know about you, why you want this job and why you'd be the best at it. Feel free to link us anything that you think might be relevant." %>
+                  <p class="error"><%= new_participant.errors.full_messages_for(:why_to_choose)[0] if new_participant.errors[:position].present? %></p>
+                </div>
+              </div>
+            </div>
+            <div class="frm-line">
+              <div class="frm-full">
+                <div class="form-group">
+                  <label>If someone you know applied for Dream Life as well and you’d like to go on this adventure with them, tell us who they are.</label>
+                  <%= f.text_area :friends, autocomplete: "off", class: "form-control", placeholder: "" %>
+                  <p class="error"><%= new_participant.errors.full_messages_for(:friends)[0] if new_participant.errors[:friends].present? %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="btn-wrap mar two"><%= f.submit "Send" , { class: 'fill-btn' } %></div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+

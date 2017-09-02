@@ -1,0 +1,49 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bootstrap.min
+ *= require style
+ *= require customs
+ *= require_self
+ * require_tree .
+ */
+body{ overflow-x: hidden;}
+.trip {
+	height: 250px;
+	width: 350px;
+}
+
+.grande-img {
+	height: 325px;
+	width: 475px;
+}
+
+#cadre {
+	border: 1px solid blue;
+	overflow:overlay;
+	margin-left: 50%;
+}
+
+#sous-titre {
+	font-size: 25px;
+	text-shadow: 2px 2px 4px #000000;
+	color: white;
+}
+
+.banner-title {
+	text-shadow: 2px 2px 4px #000000;
+}
+
+#tour_description {
+	height : 150px;
+}
+

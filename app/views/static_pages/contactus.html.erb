@@ -1,0 +1,58 @@
+<div class="white-bg pad-block contact-wrap">
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="contact-detail">
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <h2 class="contact-title">Contact Form</h2>
+            <div class="contact-form">
+              <%= form_tag(enquiry_contact_details_path, {:method => :post,:id => :contact_form}) do %>
+              <div class="form-group">
+              <%= label_tag :Full_Name%>
+               <%= text_field_tag :full_name, params[:full_name],class:"form-control", placeholder:"Full Name" %>
+             </div>
+             <!-- <div class="row">
+               <div class="col-sm-6"> -->
+             <div class="form-group">
+             <%= label_tag :Email_Address%>
+              <%= text_field_tag :email, params[:email],class:"form-control",type:'email', placeholder:"Email Address" %>
+            </div>
+          <!-- </div> -->
+          <!-- <div class="col-sm-6">
+            <div class="form-group">
+            <%= label_tag :Phone_Number%>
+             <%= text_field_tag :number, params[:number],class:"form-control", placeholder:"Phone Number" %>
+           </div>
+         </div> -->
+       <!-- </div> -->
+
+           <div class="form-group">
+           <%= label_tag :Message%>
+            <%= text_area_tag :message, params[:message],class:"form-control", placeholder:"Message" %>
+          </div>
+          <div class="text-center">
+              <%= submit_tag "Send", :name => nil,class: "btn btn-default fill-btn" %>
+          </div>
+              <% end %>
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function () {
+  $("#contact_form").validate({
+    rules: {
+      email: {required: true},
+      full_name: {required: true},
+      // number: {required: true, phone: true},
+      message: {required: true}
+    }
+  });
+});
+
+</script>
