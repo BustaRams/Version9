@@ -445,7 +445,7 @@ ul.social-icons {
     height: calc(314vh - 70px);
   }
   .cirbox1 {
-    background-image: image-url("blue.png");
+    background-image: image-url("eau.jpg");
     position: absolute;
     width: 40%;
     height: calc(60vh - 50px);
@@ -473,7 +473,7 @@ ul.social-icons {
     }
   }
   .cirbox2 {
-    background-image: image-url("blue.png");
+    background-image: image-url("suite.jpg");
     z-index: 10;
     background-position: center center;
     background-repeat: no-repeat;
@@ -642,7 +642,6 @@ ul.social-icons {
       width: 245px;
       height: 245px;
       left: 25px;
-      background-image: linear-gradient(to right, transparent 50%, #418CFD 0);
       @media(min-width: 1226px) {
         top: -43px;
       }

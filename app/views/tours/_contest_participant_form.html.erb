@@ -70,8 +70,8 @@
             <div class="frm-line">
               <div class="frm-full">
                 <div class="form-group">
-                  <label>Why should we chose you?* </label>
-                  <%= f.text_area :why_to_choose, autocomplete: "off", class: "form-control bigger-textarea", placeholder: "Tell us everything we should know about you, why you want this job and why you'd be the best at it. Feel free to link us anything that you think might be relevant." %>
+                  <label>Why should we choose you?* </label>
+                  <%= f.text_area :why_to_choose, autocomplete: "off", class: "form-control bigger-textarea", placeholder: "Tell us everything we should know about you, why you want this job and why you'd be the best at it. Feel free to attach anything that you think might be relevant." %>
                   <p class="error"><%= new_participant.errors.full_messages_for(:why_to_choose)[0] if new_participant.errors[:position].present? %></p>
                 </div>
               </div>
