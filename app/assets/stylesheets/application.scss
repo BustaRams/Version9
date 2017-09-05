@@ -16,6 +16,11 @@
  *= require_self
  * require_tree .
  */
+
+html {
+	overflow-x: hidden;
+}
+
 body{ overflow-x: hidden;}
 .trip {
 	height: 250px;
